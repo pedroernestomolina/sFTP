@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuracion>
+  <Modo></Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
+  
+  <Servidor>
+    <Host>localhost</Host>
+    <BD>MSCALA</BD>
+    <user></user>
+  </Servidor>
+
+  <ServidorFtp>
+    <Host>ftp://pitabodegas.com</Host>
+    <Usuario>leonuxftp@pitabodegas.com</Usuario>
+    <Clave>71277128</Clave>
+  </ServidorFtp>
+
+  <Master>
+    <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
+    <EnviarBoletinA></EnviarBoletinA>
+  </Master>
+
+  <Sucursal>
+    <Id>15</Id>
+    <RutaUbicacionBoletin></RutaUbicacionBoletin>
+    <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
+    <Equipo>
+      <RutaParaCrearArchivoCierre>c:/leonux/bandeja</RutaParaCrearArchivoCierre>
+      <RutaParaAlojarCierre>c:/leonuxFtp/bandeja</RutaParaAlojarCierre>
+      <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
+      <RutaParaDescomprimirBoletin>c:/leonux/bandeja/temp</RutaParaDescomprimirBoletin>
+    </Equipo>
+    <ActualizarInventarioDeposito>SI</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
+  </Sucursal>
+  
+</Configuracion>
