@@ -51,6 +51,10 @@ namespace ModFTP.FrontEnd.Helpers
                                         {
                                             Sistema._ListaSucursalesEnviarBoletin = mc.InnerText.Trim().Split(',');
                                         }
+                                        if (mc.LocalName.ToUpper().Trim() == "AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA")
+                                        {
+                                            Sistema._AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA = DateTime.Parse(mc.InnerText);
+                                        }
                                     }
                                 }
 
@@ -96,6 +100,10 @@ namespace ModFTP.FrontEnd.Helpers
                                         if (sc.LocalName.ToUpper().Trim() == "ACTUALIZARINVENTARIODEPOSITO")
                                         {
                                             Sistema._ActualizarInventarioDeposito = sc.InnerText.Trim().ToUpper() == "SI" ? true : false;
+                                        }
+                                        if (sc.LocalName.ToUpper().Trim() == "AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL")
+                                        {
+                                            Sistema._AlBajarBoletinDejarSoloMovimientosKardexDepositoPrincipal  = sc.InnerText.Trim().ToUpper() == "SI" ? true : false;
                                         }
                                     }
                                 }

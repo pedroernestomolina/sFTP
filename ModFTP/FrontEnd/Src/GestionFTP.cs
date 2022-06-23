@@ -141,79 +141,79 @@ namespace ModFTP.FrontEnd.Src
             }
         }
 
-        private void CallEnviarBoletin()
-        {
-            var _tiempoEspera = 10000;
-            var _rutaArchivoZip_Boletin = Sistema._RutaMaster_ParaAlojarBoletin ;
+        //private void CallEnviarBoletin()
+        //{
+        //    var _tiempoEspera = 10000;
+        //    var _rutaArchivoZip_Boletin = Sistema._RutaMaster_ParaAlojarBoletin ;
 
-            _st.Clear();
-            MsgDebug("INICIAR PROCESO: ENVIAR BOLETIN");
-            MsgDebug("Eliminando Archivos Basura");
-            MsgDebug("Ruta: " + _rutaArchivosTxt_Boletin);
-            var rt = BorrarArchivos(_rutaArchivosTxt_Boletin, "*");
-            if (rt.Result == Enumerados.EnumResult.isError)
-            {
-                Helpers.Msg.Error(rt.Mensaje);
-                return;
-            }
-            System.Threading.Thread.Sleep(_tiempoEspera);
+        //    _st.Clear();
+        //    MsgDebug("INICIAR PROCESO: ENVIAR BOLETIN");
+        //    MsgDebug("Eliminando Archivos Basura");
+        //    MsgDebug("Ruta: " + _rutaArchivosTxt_Boletin);
+        //    var rt = BorrarArchivos(_rutaArchivosTxt_Boletin, "*");
+        //    if (rt.Result == Enumerados.EnumResult.isError)
+        //    {
+        //        Helpers.Msg.Error(rt.Mensaje);
+        //        return;
+        //    }
+        //    System.Threading.Thread.Sleep(_tiempoEspera);
 
-            MsgDebug("Test BD");
-            var r01 = _offLine.Servidor_Test();
-            if (r01.Result == DtoLib.Enumerados.EnumResult.isError)
-            {
-                Helpers.Msg.Error(r01.Mensaje);
-                return;
-            }
-            System.Threading.Thread.Sleep(_tiempoEspera);
+        //    MsgDebug("Test BD");
+        //    var r01 = _offLine.Servidor_Test();
+        //    if (r01.Result == DtoLib.Enumerados.EnumResult.isError)
+        //    {
+        //        Helpers.Msg.Error(r01.Mensaje);
+        //        return;
+        //    }
+        //    System.Threading.Thread.Sleep(_tiempoEspera);
 
-            MsgDebug("GENERANDO CONSULTAS PARA EL BOLETIN");
-            var r02 = _offLine.Servidor_Principal_CrearBoletin("/var/lib/mysql-files/");
-            if (r02.Result == DtoLib.Enumerados.EnumResult.isError)
-            {
-                Helpers.Msg.Error(r02.Mensaje);
-                return;
-            }
-            MsgDebug("CREANDO PAQUETE BOLETIN");
+        //    MsgDebug("GENERANDO CONSULTAS PARA EL BOLETIN");
+        //    var r02 = _offLine.Servidor_Principal_CrearBoletin("/var/lib/mysql-files/");
+        //    if (r02.Result == DtoLib.Enumerados.EnumResult.isError)
+        //    {
+        //        Helpers.Msg.Error(r02.Mensaje);
+        //        return;
+        //    }
+        //    MsgDebug("CREANDO PAQUETE BOLETIN");
 
-            var origen = _rutaArchivosTxt_Boletin;
-            var destinoZip = _rutaArchivoZip_Boletin;
-            var r03 = EmpaquetarBoletin(origen, destinoZip);
-            if (r03.Result == Enumerados.EnumResult.isError)
-            {
-                Helpers.Msg.Error(r03.Mensaje);
-                return;
-            }
-            MsgDebug("VERIFICANDO PAQUETE");
+        //    var origen = _rutaArchivosTxt_Boletin;
+        //    var destinoZip = _rutaArchivoZip_Boletin;
+        //    var r03 = EmpaquetarBoletin(origen, destinoZip);
+        //    if (r03.Result == Enumerados.EnumResult.isError)
+        //    {
+        //        Helpers.Msg.Error(r03.Mensaje);
+        //        return;
+        //    }
+        //    MsgDebug("VERIFICANDO PAQUETE");
 
-            var seguir = false;
-            var xms = "VERIFIQUE QUE EL ARCHIVO FUE CREADO EXISTOSAMENTE Y QUE SU TAMAÑO SEA MAYOR A 1KB" + Environment.NewLine + r03.MiEntidad;
-            MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            var xm = MessageBox.Show("Continuar Con El Proceso ?", "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (xm == System.Windows.Forms.DialogResult.Yes)
-            {
-                seguir = true;
-            }
+        //    var seguir = false;
+        //    var xms = "VERIFIQUE QUE EL ARCHIVO FUE CREADO EXISTOSAMENTE Y QUE SU TAMAÑO SEA MAYOR A 1KB" + Environment.NewLine + r03.MiEntidad;
+        //    MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    var xm = MessageBox.Show("Continuar Con El Proceso ?", "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+        //    if (xm == System.Windows.Forms.DialogResult.Yes)
+        //    {
+        //        seguir = true;
+        //    }
 
-            if (seguir)
-            {
-                MsgDebug("SUBIENDO BOLETIN AL FTP");
+        //    if (seguir)
+        //    {
+        //        MsgDebug("SUBIENDO BOLETIN AL FTP");
 
-                var r04 = SubirBoletinAlFtp(r03.MiEntidad);
-                if (r04.Result == Enumerados.EnumResult.isError)
-                {
-                    Helpers.Msg.Error(r04.Mensaje);
-                    return;
-                }
-                MsgDebug("Proceso Realizado Con E X I T O................");
+        //        var r04 = SubirBoletinAlFtp(r03.MiEntidad);
+        //        if (r04.Result == Enumerados.EnumResult.isError)
+        //        {
+        //            Helpers.Msg.Error(r04.Mensaje);
+        //            return;
+        //        }
+        //        MsgDebug("Proceso Realizado Con E X I T O................");
 
-                Helpers.Msg.OK("PROCESO FUE REALIZADO CON EXITO..........");
-            }
-            else
-            {
-                MsgDebug("Proceso Detenido  !!!!!!!!!!!!!!!!!!!!!!");
-            }
-        }
+        //        Helpers.Msg.OK("PROCESO FUE REALIZADO CON EXITO..........");
+        //    }
+        //    else
+        //    {
+        //        MsgDebug("Proceso Detenido  !!!!!!!!!!!!!!!!!!!!!!");
+        //    }
+        //}
 
         public Entidad<string> EmpaquetarBoletin(string dataOrigen, string destino)
         {
@@ -244,43 +244,43 @@ namespace ModFTP.FrontEnd.Src
             return rt;
         }
 
-        public Ficha SubirBoletinAlFtp(string archivo)
-        {
-            var rt = new Ficha();
+        //public Ficha SubirBoletinAlFtp(string archivo)
+        //{
+        //    var rt = new Ficha();
 
-            var sc = new List<string>();
-            for (var x = 0; x <= Sistema._ListaSucursalesEnviarBoletin.Length-1; x++)
-            {
-                var s = Sistema._ListaSucursalesEnviarBoletin[x];
-                if (s.ToString().Trim() != "")
-                {
-                    var n = "/entrada" + s.ToString().Trim().PadLeft(2,'0') + "/";
-                    sc.Add(n);
-                }
-            }
+        //    var sc = new List<string>();
+        //    for (var x = 0; x <= Sistema._ListaSucursalesEnviarBoletin.Length-1; x++)
+        //    {
+        //        var s = Sistema._ListaSucursalesEnviarBoletin[x];
+        //        if (s.ToString().Trim() != "")
+        //        {
+        //            var n = "/entrada" + s.ToString().Trim().PadLeft(2,'0') + "/";
+        //            sc.Add(n);
+        //        }
+        //    }
 
-            if (sc.Count > 0)
-            {
-                try
-                {
-                    foreach (var f in sc)
-                    {
-                        SubirArchivo(archivo, _ftpHost + f);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    rt.Mensaje = ex.Message;
-                    rt.Result = Enumerados.EnumResult.isError;
-                }
-            }
-            else 
-            {
-                MsgDebug("No Se Han Indicado Las Sucursales A Recibir Boletin");
-            }
+        //    if (sc.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            foreach (var f in sc)
+        //            {
+        //                SubirArchivo(archivo, _ftpHost + f);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            rt.Mensaje = ex.Message;
+        //            rt.Result = Enumerados.EnumResult.isError;
+        //        }
+        //    }
+        //    else 
+        //    {
+        //        MsgDebug("No Se Han Indicado Las Sucursales A Recibir Boletin");
+        //    }
 
-            return rt;
-        }
+        //    return rt;
+        //}
 
         public void SubirArchivo(string archivo, string hosting) 
         {
@@ -590,6 +590,26 @@ namespace ModFTP.FrontEnd.Src
                     MsgDebug("BOLETIN REGISTRADO");
                 }
 
+                if (Sistema._AlBajarBoletinDejarSoloMovimientosKardexDepositoPrincipal)
+                {
+                    var r1 = _offLine.Sucursal_GetIdDepositoPrincipal_ByCodigoSucursal(Sistema._IdSucursal);
+                    if (r1.Result == DtoLib.Enumerados.EnumResult.isError)
+                    {
+                        Helpers.Msg.Error(r1.Mensaje);
+                        return;
+                    }
+                    if (!String.IsNullOrEmpty(r1.Entidad))
+                    {
+                        var r2 = _offLine.Servidor_Principal_EliminarMovimientosKardexExcluyeDeposito(r1.Entidad);
+                        if (r2.Result == DtoLib.Enumerados.EnumResult.isError)
+                        {
+                            Helpers.Msg.Error(r2.Mensaje);
+                            return;
+                        }
+                        MsgDebug("MOVIMIENTOS KARDEX ELIMINADOS");
+                    }
+                }
+
                 if (Sistema._ActualizarInventarioDeposito) 
                 {
                     var r03 = _offLine.Servidor_Principal_ActualizarInventarioDeposito();
@@ -730,7 +750,8 @@ namespace ModFTP.FrontEnd.Src
             System.Threading.Thread.Sleep(_tiempoEspera);
 
             MsgDebug("GENERANDO CONSULTAS PARA EL BOLETIN");
-            var r02 = _offLine.Servidor_Principal_CrearBoletin("/var/lib/mysql-files/");
+            var _fechaMovInv = Sistema._AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA;
+            var r02 = _offLine.Servidor_Principal_CrearBoletin("/var/lib/mysql-files/", _fechaMovInv);
             if (r02.Result == DtoLib.Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(r02.Mensaje);
