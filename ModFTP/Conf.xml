@@ -4,7 +4,7 @@
   
   <Servidor>
     <Host>localhost</Host>
-    <BD>bodegapita</BD>
+    <BD>mscala</BD>
     <user></user>
   </Servidor>
 
@@ -21,7 +21,7 @@
   </Master>
 
   <Sucursal>
-    <Id>08</Id>
+    <Id>15</Id>
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
     <Equipo>
@@ -30,7 +30,7 @@
       <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
       <RutaParaDescomprimirBoletin>c:/leonux/bandeja/temp</RutaParaDescomprimirBoletin>
     </Equipo>
-    <ActualizarInventarioDeposito>no</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
+    <ActualizarInventarioDeposito>si</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
     <AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL>SI</AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL> <!-- ELIMINA TODOS LOS MOVIMIENTOS KARDEX EXCLUYENDO DEPOSITO PRINCIPAL DE LA SUCURSAL INDICADA -->
   </Sucursal>
   

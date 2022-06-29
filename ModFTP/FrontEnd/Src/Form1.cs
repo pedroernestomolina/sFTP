@@ -53,6 +53,7 @@ namespace ModFTP.FrontEnd.Src
             panel15.Visible = !_controlador.IsMaster;
             L_VERSION.Text = "Ver. " + Application.ProductVersion;
             L_SUCURSAL.Text = _controlador.IdSucursal;
+            L_ID.Text = _controlador.Identifica;
         }
 
         private void BT_SUBIR_CIERRE_Click(object sender, EventArgs e)
@@ -62,9 +63,17 @@ namespace ModFTP.FrontEnd.Src
 
         private void SubirCierreAlFtp()
         {
+            var r01 = _controlador.BuscarCambiosBD();
+            if (r01.Result == DataProv.OOB.Resultado.Enumerados.EnumResult.isError)
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
             _controlador.PrepararCierre();
             if (_controlador.PrepararCierreIsOk)
+            {
                 _controlador.SubirCierreAlFtp();
+            }
         }
 
         private void BT_ENVIAR_BOLETIN_Click(object sender, EventArgs e)
@@ -145,7 +154,17 @@ namespace ModFTP.FrontEnd.Src
         {
             this.Close();
         }
-   
+
+        private void TDM_SISTEMA_DESCARGAR_ACTUALIZACIONES_BD_Click(object sender, EventArgs e)
+        {
+            DescargarActualizacionBD();
+        }
+
+        private void DescargarActualizacionBD()
+        {
+            _controlador.DescargarActualizacionBD();
+        }
+     
     }
 
 }

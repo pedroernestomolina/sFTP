@@ -46,6 +46,7 @@ namespace ModFTP.FrontEnd.Src
         public string IdSucursal { get { return Sistema._IdSucursal; } }
         public bool DescargaBoletinIsOk { get { return _boletinDescargadoIsOk; } }
         public bool PrepararCierreIsOk { get { return _prepararCierreIsOk; } }
+        public string Identifica { get { return Sistema._isMaster ? "MASTER" : "SUCURSAL"; } }
 
 
         public GestionFTP()
@@ -833,6 +834,66 @@ namespace ModFTP.FrontEnd.Src
             }
 
             return rt;
+        }
+
+
+        public Ficha BuscarCambiosBD()
+        {
+            var rt = new Ficha();
+
+            var r01 = _offLine.MonitorCambiosBD_GetId_UltimoCambioRegistrado();
+            if (r01.Result == DtoLib.Enumerados.EnumResult.isError)
+            {
+                MsgDebug("PROCESO FINALIZO CON ERROR");
+                rt.Mensaje = r01.Mensaje;
+                rt.Result = Enumerados.EnumResult.isError;
+                return rt;
+            }
+            MsgDebug("BUSCANDO ID ULTIMO CAMBIO PROCESADO: "+r01.Entidad.ToString());
+
+            var r02 = _offLine.MonitorCambiosBD_Host_GetLista_NuevosCambios_APartirDel_IdRef(r01.Entidad);
+            if (r02.Result == DtoLib.Enumerados.EnumResult.isError)
+            {
+                MsgDebug("PROCESO FINALIZO CON ERROR");
+                rt.Mensaje = r02.Mensaje;
+                rt.Result = Enumerados.EnumResult.isError;
+                return rt;
+            }
+            MsgDebug("BUSCANDO LISTA DE CAMBIOS NUEVOS A PROCESAR: " + r02.Lista.Count.ToString());
+
+            if (r02.Lista.Count > 0)
+            {
+                var r03 = _offLine.MonitorCambiosBD_ProcesarCambios(r02.Lista);
+                if (r03.Result == DtoLib.Enumerados.EnumResult.isError)
+                {
+                    MsgDebug("PROCESO FINALIZO CON ERROR");
+                    rt.Mensaje = r03.Mensaje;
+                    rt.Result = Enumerados.EnumResult.isError;
+                    return rt;
+                }
+                MsgDebug("EJCUTANDO CAMBIOS");
+            }
+            else 
+            {
+                MsgDebug("NO HAY CAMBIOS QUE PROCESAR");
+            }
+            return rt;
+        }
+
+        public void DescargarActualizacionBD()
+        {
+            if (Sistema._isMaster)
+            {
+                Helpers.Msg.OK("FUNCION APLICA SOLO A SUCURSALES");
+                return;
+            }
+            var r01 = BuscarCambiosBD();
+            if (r01.Result == Enumerados.EnumResult.isError) 
+            {
+                Helpers.Msg.Error(r01.Mensaje);
+                return;
+            }
+            Helpers.Msg.OK("ACTUALIZACIONES REALIZADAS CON EXITO");
         }
 
     }
