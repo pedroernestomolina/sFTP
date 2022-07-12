@@ -66,6 +66,7 @@
     <Compile Include="DataProv\OOB\Resultado\Entidad.cs" />
     <Compile Include="FrontEnd\Helpers\Msg.cs" />
     <Compile Include="FrontEnd\Helpers\Utilitis.cs" />
+    <Compile Include="FrontEnd\Src\EnumeradoSist.cs" />
     <Compile Include="FrontEnd\Src\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +105,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="CambiosVersion.txt" />
     <Content Include="Conf.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>

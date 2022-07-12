@@ -67,6 +67,22 @@ namespace ModFTP.FrontEnd.Helpers
                                         {
                                             Sistema._IdSucursal = sc.InnerText.Trim().ToUpper();
                                         }
+                                        if (sc.LocalName.ToUpper().Trim() == "TIPO_SISTEMA")
+                                        {
+                                            var _tipo = sc.InnerText.Trim().ToUpper();
+                                            switch (_tipo) 
+                                            {
+                                                case "1":
+                                                    Sistema.TipoSistemaFact = Src.EnumeradoSist.TipoSistema.PosOffLine;
+                                                    break;
+                                                case "2":
+                                                    Sistema.TipoSistemaFact = Src.EnumeradoSist.TipoSistema.PosOnLine;
+                                                    break;
+                                                default:
+                                                    Sistema.TipoSistemaFact = Src.EnumeradoSist.TipoSistema.SinDefinir;
+                                                    break;
+                                            }
+                                        }
                                         if (sc.LocalName.ToUpper().Trim() == "RUTAUBICACIONBOLETIN")
                                         {
                                             Sistema._RutaUbicacionBoletin = sc.InnerText.Trim();

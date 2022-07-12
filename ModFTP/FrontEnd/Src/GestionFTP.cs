@@ -863,7 +863,17 @@ namespace ModFTP.FrontEnd.Src
 
             if (r02.Lista.Count > 0)
             {
-                var r03 = _offLine.MonitorCambiosBD_ProcesarCambios(r02.Lista);
+                List<DtoLibPosOffLine.Servidor.MonitorCambiosBD.NevoCambio.Ficha> _lCmb= new List<DtoLibPosOffLine.Servidor.MonitorCambiosBD.NevoCambio.Ficha>();
+                switch (Sistema.TipoSistemaFact)
+                {
+                    case EnumeradoSist.TipoSistema.PosOffLine:
+                        _lCmb = r02.Lista.Where(w => w.aplicaPosOffLine.Trim().ToUpper() == "1").ToList();
+                        break;
+                    case EnumeradoSist.TipoSistema.PosOnLine:
+                        _lCmb = r02.Lista.Where(w => w.aplicaPosOnLine.Trim().ToUpper() == "1").ToList();
+                        break;
+                };
+                var r03 = _offLine.MonitorCambiosBD_ProcesarCambios(_lCmb);
                 if (r03.Result == DtoLib.Enumerados.EnumResult.isError)
                 {
                     MsgDebug("PROCESO FINALIZO CON ERROR");

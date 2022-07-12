@@ -38,6 +38,8 @@ namespace ModFTP.FrontEnd.Src
 
         public static DateTime _AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA { get; set; } // FORMATO AÑO,MES,DIA
 
+        public static EnumeradoSist.TipoSistema TipoSistemaFact { get; set; }
+
     }
 
 }
