@@ -113,8 +113,10 @@
     <Content Include="FrontEnd\imagenes\bt_descargar_archivo.png" />
     <Content Include="FrontEnd\imagenes\bt_salida_2.png" />
     <Content Include="FrontEnd\imagenes\bt_subir_archivo.png" />
+    <Content Include="FrontEnd\imagenes\bt_subir_bajar.png" />
     <Content Include="FrontEnd\imagenes\FTP.png" />
     <Content Include="FrontEnd\imagenes\LeonuxMovil.ico" />
+    <None Include="Resources\bt_subir_bajar.png" />
     <None Include="Resources\bt_descargar_archivo.png" />
     <None Include="Resources\bt_subir_archivo.png" />
     <None Include="Resources\bt_salida_2.png" />

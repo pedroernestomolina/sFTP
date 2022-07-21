@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Modo></Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
+  <Modo>MASTER</Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
   
   <Servidor>
-    <Host>localhost</Host>
-    <BD>bodegapita</BD>
+    <Host>10.10.100.82</Host>
+    <BD>00000001</BD>
     <user></user>
   </Servidor>
 

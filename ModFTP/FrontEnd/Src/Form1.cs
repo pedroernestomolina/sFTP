@@ -43,7 +43,7 @@ namespace ModFTP.FrontEnd.Src
         {
             L_DEBUG.Text = "";
             BT_ENVIAR_BOLETIN.Enabled = _controlador.IsMaster;
-            BT_BAJAR_CIERRE.Enabled = _controlador.IsMaster;
+            //BT_BAJAR_CIERRE.Enabled = _controlador.IsMaster;
 
             BT_BAJAR_BOLETIN.Enabled = !_controlador.IsMaster;
             BT_SUBIR_CIERRE.Enabled = !_controlador.IsMaster;
@@ -82,7 +82,8 @@ namespace ModFTP.FrontEnd.Src
         }
         private void EnviarBoletin()
         {
-            _controlador.EnviarBoletin();
+            _controlador.GestionMaster();
+            //_controlador.EnviarBoletin();
         }
 
         private void BT_BAJAR_CIERRE_Click(object sender, EventArgs e)
@@ -159,10 +160,19 @@ namespace ModFTP.FrontEnd.Src
         {
             DescargarActualizacionBD();
         }
-
         private void DescargarActualizacionBD()
         {
             _controlador.DescargarActualizacionBD();
+        }
+
+
+        private void TSM_Sistema_SoloSubirBoletin_Click(object sender, EventArgs e)
+        {
+            _controlador.EnviarBoletin();
+        }
+        private void TSM_Sistema_SoloBajarCierres_Click(object sender, EventArgs e)
+        {
+            _controlador.BajarCierres();
         }
      
     }

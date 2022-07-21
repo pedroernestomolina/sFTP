@@ -134,12 +134,14 @@ namespace ModFTP.FrontEnd.Src
             frm.MuestraMensaje(_st.ToString());
         }
 
-        public void EnviarBoletin()
+        public bool EnviarBoletin()
         {
+            var result = false;
             if (_master)
             {
-                CallEnviarBoletin_New();
+                return CallEnviarBoletin_New();
             }
+            return result;
         }
 
         //private void CallEnviarBoletin()
@@ -544,6 +546,12 @@ namespace ModFTP.FrontEnd.Src
 
         public void InsertarBoletin()
         {
+            if (Sistema._isMaster)
+            {
+                Helpers.Msg.OK("FUNCION APLICA SOLO A SUCURSALES");
+                return;
+            }
+
             try
             {
                 var ruta_AlojamientoBoletin = Sistema._RutaParaAlojarBoletin;
@@ -724,8 +732,9 @@ namespace ModFTP.FrontEnd.Src
             }
         }
 
-        private void CallEnviarBoletin_New()
+        private bool CallEnviarBoletin_New()
         {
+            var result = false;
             var _tiempoEspera = 10000;
             var _rutaArchivoZip_Boletin = Sistema._RutaMaster_ParaAlojarBoletin;
 
@@ -737,7 +746,7 @@ namespace ModFTP.FrontEnd.Src
             if (rt.Result == Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(rt.Mensaje);
-                return;
+                return false;
             }
             System.Threading.Thread.Sleep(_tiempoEspera);
 
@@ -746,7 +755,7 @@ namespace ModFTP.FrontEnd.Src
             if (r01.Result == DtoLib.Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(r01.Mensaje);
-                return;
+                return false;
             }
             System.Threading.Thread.Sleep(_tiempoEspera);
 
@@ -756,7 +765,7 @@ namespace ModFTP.FrontEnd.Src
             if (r02.Result == DtoLib.Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(r02.Mensaje);
-                return;
+                return false;
             }
             MsgDebug("CREANDO PAQUETE BOLETIN");
 
@@ -766,12 +775,12 @@ namespace ModFTP.FrontEnd.Src
             if (r03.Result == Enumerados.EnumResult.isError)
             {
                 Helpers.Msg.Error(r03.Mensaje);
-                return;
+                return false;
             }
             MsgDebug("VERIFICANDO PAQUETE");
 
             var seguir = false;
-            var xms = "VERIFIQUE QUE EL ARCHIVO FUE CREADO EXISTOSAMENTE Y QUE SU TAMAÑO SEA MAYOR A 1KB" + Environment.NewLine + r03.MiEntidad;
+            var xms = "VERIFIQUE QUE EL ARCHIVO FUE CREADO EXITOSAMENTE Y QUE SU TAMAÑO SEA MAYOR A 1KB" + Environment.NewLine + r03.MiEntidad;
             MessageBox.Show(xms, "*** ALERTA ***", MessageBoxButtons.OK, MessageBoxIcon.Information);
             var xm = MessageBox.Show("Continuar Con El Proceso ?", "*** ALERTA ***", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (xm == System.Windows.Forms.DialogResult.Yes)
@@ -787,16 +796,19 @@ namespace ModFTP.FrontEnd.Src
                 if (r04.Result == Enumerados.EnumResult.isError)
                 {
                     Helpers.Msg.Error(r04.Mensaje);
-                    return;
+                    return false;
                 }
                 MsgDebug("Proceso Realizado Con E X I T O................");
 
-                Helpers.Msg.OK("PROCESO FUE REALIZADO CON EXITO..........");
+                //Helpers.Msg.OK("PROCESO FUE REALIZADO CON EXITO..........");
+                result = true;
             }
             else
             {
                 MsgDebug("Proceso Detenido  !!!!!!!!!!!!!!!!!!!!!!");
             }
+
+            return result;
         }
 
         public Ficha SubirBoletinAlFtp_New(string archivo)
@@ -904,6 +916,14 @@ namespace ModFTP.FrontEnd.Src
                 return;
             }
             Helpers.Msg.OK("ACTUALIZACIONES REALIZADAS CON EXITO");
+        }
+
+        public void GestionMaster()
+        {
+            if (EnviarBoletin())
+            {
+                BajarCierres();
+            }
         }
 
     }
