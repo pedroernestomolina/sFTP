@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Modo>MASTER</Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
+  <Modo></Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
   
   <Servidor>
-    <Host>10.10.100.82</Host>
-    <BD>00000001</BD>
+    <Host>localhost</Host>
+    <BD>andresbello</BD>
     <user></user>
   </Servidor>
 
@@ -21,7 +21,7 @@
   </Master>
 
   <Sucursal>
-    <Id>08</Id>
+    <Id>03</Id>
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
