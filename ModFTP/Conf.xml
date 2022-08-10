@@ -4,7 +4,7 @@
   
   <Servidor>
     <Host>localhost</Host>
-    <BD>andresbello</BD>
+    <BD>mscala</BD>
     <user></user>
   </Servidor>
 
@@ -21,7 +21,7 @@
   </Master>
 
   <Sucursal>
-    <Id>03</Id>
+    <Id>15</Id>
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
