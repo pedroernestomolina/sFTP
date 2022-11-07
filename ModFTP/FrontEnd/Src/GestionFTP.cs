@@ -512,6 +512,25 @@ namespace ModFTP.FrontEnd.Src
                 _st.Clear();
                 MsgDebug("INICIAR PROCESO: PREPARAR CIERRE");
 
+
+                MsgDebug("VERIFICA SI EXISTE UNA JORNADA ABIERTA CON DOCUMENTOS");
+                var rt = _offLine.Verificar_ParaPrepararCierre();
+                if (rt.Result == DtoLib.Enumerados.EnumResult.isError)
+                {
+                    Helpers.Msg.Error(rt.Mensaje);
+                    return;
+                }
+                if (rt.Entidad > 0)
+                {
+                    var msg = @"PROCESO DETENIDO, EXISTE UNA JORNADA ABIERTA CON DOCUMENTOS EN PROCESO" + Environment.NewLine +
+                        "SE RECOMIENDA: " + Environment.NewLine +
+                        "1. CERRAR LA JORNADA ACTUAL Y PROCEDER A ENVIAR CIERRE " + Environment.NewLine +
+                        "2. ESPERAR A REALIZAR EL CIERRE DEL DIA, Y VOLVER A INTENTAR ENVIAR LOS CIERRES";
+                    Helpers.Msg.Error(msg);
+                    return;
+                }
+
+
                 MsgDebug("Eliminando Archivos");
                 var r00 = BorrarArchivos(_ruta_ParaCrearArchivosTempCierre , "*");
                 if (r00.Result == Enumerados.EnumResult.isError)
