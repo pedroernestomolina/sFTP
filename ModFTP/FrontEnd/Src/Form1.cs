@@ -174,7 +174,5 @@ namespace ModFTP.FrontEnd.Src
         {
             _controlador.BajarCierres();
         }
-     
     }
-
 }

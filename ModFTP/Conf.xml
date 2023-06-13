@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Modo></Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
+  <Modo>MASTER</Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
   
   <Servidor>
-    <Host>localhost</Host>
-    <BD>mscala</BD>
+    <Host>10.10.100.82</Host>
+    <BD>pita</BD>
     <user></user>
   </Servidor>
 
@@ -17,11 +17,11 @@
   <Master>
     <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
     <EnviarBoletinA></EnviarBoletinA>
-    <AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA>2022-01-01</AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA><!-- FORMATO AÑO, MES, DIA, ENVIA MOVIMIENTOS DE INVENTARIO A PARTIR DE ESA FECHA PARA LAS SUCURSALES -->
+    <AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA>2023-03-01</AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA><!-- FORMATO AÑO, MES, DIA, ENVIA MOVIMIENTOS DE INVENTARIO A PARTIR DE ESA FECHA PARA LAS SUCURSALES -->
   </Master>
 
   <Sucursal>
-    <Id>15</Id>
+    <Id>19</Id> <!--CODIGO SUCURSAL HEX -->
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
@@ -31,7 +31,7 @@
       <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
       <RutaParaDescomprimirBoletin>c:/leonux/bandeja/temp</RutaParaDescomprimirBoletin>
     </Equipo>
-    <ActualizarInventarioDeposito>no</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
+    <ActualizarInventarioDeposito>si</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
     <AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL>SI</AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL> <!-- ELIMINA TODOS LOS MOVIMIENTOS KARDEX EXCLUYENDO DEPOSITO PRINCIPAL DE LA SUCURSAL INDICADA -->
   </Sucursal>
   

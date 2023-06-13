@@ -593,6 +593,7 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(255, 6);
+            this.toolStripMenuItem3.Visible = false;
             // 
             // TSM_Sistema_SoloSubirBoletin
             // 
