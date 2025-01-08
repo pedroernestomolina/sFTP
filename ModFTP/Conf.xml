@@ -3,8 +3,8 @@
   <Modo>MASTER</Modo>  <!-- MASTER: PARA CREAR Y SUBIR BOLETIN, VACIO: PARA SOLO BAJAR BOLETIN-->
   
   <Servidor>
-    <Host>10.10.100.82</Host>
-    <BD>pita</BD>
+    <Host>192.168.1.15</Host>
+    <BD>zufu</BD>
     <user></user>
   </Servidor>
 
@@ -21,7 +21,7 @@
   </Master>
 
   <Sucursal>
-    <Id>19</Id> <!--CODIGO SUCURSAL HEX -->
+    <Id>16</Id> <!--CODIGO SUCURSAL HEX -->
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
