@@ -106,9 +106,15 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="CambiosVersion.txt" />
-    <Content Include="Conf.xml">
+    <Content Include="Conf - copia.xml" />
+    <Content Include="Conf_divi - Copy.xml" />
+    <Content Include="Conf_original.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Conf.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FrontEnd\imagenes\bt_descargar_archivo.png" />
     <Content Include="FrontEnd\imagenes\bt_salida_2.png" />

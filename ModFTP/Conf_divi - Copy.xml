@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
-  <Modo>MASTER</Modo>
+  <Modo></Modo>
   
   <Servidor>
-    <Host>192.168.100.227</Host>
-    <BD>star</BD>
+    <Host>localhost</Host>
+    <BD>divi</BD>
     <user></user>
   </Servidor>
 
@@ -20,7 +20,7 @@
   </Master>
 
   <Sucursal>
-    <Id>FF</Id>
+    <Id>16</Id>
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
