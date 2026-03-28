@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
   <Modo>MASTER</Modo>
+  <Master_Negocio_ID>2</Master_Negocio_ID> <!--1:MAYORISTA, 2:PITA GUACARA-->
+  <Master_Carpeta_Boletin>pitaBoletin</Master_Carpeta_Boletin> <!--CARPETA FTP DONDE SE ENVIAN LOS BOLETIN-->
+  <Master_Carpeta_Cierre>pitaCierre</Master_Carpeta_Cierre> <!--CARPETA FTP DONDE SE BUSCAN/COLOCAN LOS CIERRES-->
+
   
   <Servidor>
-    <Host>192.168.100.227</Host>
-    <BD>star</BD>
+    <Host>192.168.9.50</Host>
+    <BD>00000001</BD>
     <user></user>
   </Servidor>
 
@@ -20,10 +24,10 @@
   </Master>
 
   <Sucursal>
-    <Id>FF</Id>
+    <Id>02</Id>
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
-    <RutaUbicacionCierre>entrada01</RutaUbicacionCierre>
+    <RutaUbicacionCierre></RutaUbicacionCierre>
     <Equipo>
       <RutaParaCrearArchivoCierre>c:/leonux/bandeja</RutaParaCrearArchivoCierre>
       <RutaParaAlojarCierre>c:/leonuxFtp/bandeja</RutaParaAlojarCierre>

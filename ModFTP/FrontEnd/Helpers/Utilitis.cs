@@ -39,6 +39,33 @@ namespace ModFTP.FrontEnd.Helpers
                                     }
                                 }
 
+                                if (nv.LocalName.ToUpper().Trim() == "MASTER_NEGOCIO_ID")
+                                {
+                                    var id = nv.InnerText.Trim().ToUpper();
+                                    switch (id)
+                                    {
+                                        case "1":
+                                            Sistema.IdNegocio = Src.enumNegocio.Negocio.MayoristaValencia;
+                                            break;
+                                        case "2":
+                                            Sistema.IdNegocio = enumNegocio.Negocio.PitaGuacara;
+                                            break;
+                                        default:
+                                            Sistema.IdNegocio = enumNegocio.Negocio.NoDefinido;
+                                            break;
+                                    }
+                                }
+                                if (nv.LocalName.ToUpper().Trim() == "MASTER_CARPETA_BOLETIN") 
+                                {
+                                    Sistema.CarpetaBoletin_Negocio = nv.InnerText.Trim();
+                                }
+                                if (nv.LocalName.ToUpper().Trim() == "MASTER_CARPETA_CIERRE")
+                                {
+                                    Sistema.CarpetaCierre_Negocio = nv.InnerText.Trim();
+                                }
+
+
+
                                 if (nv.LocalName.ToUpper().Trim() == "MASTER")
                                 {
                                     foreach (XmlNode mc in nv.ChildNodes) 

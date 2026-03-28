@@ -86,7 +86,8 @@ namespace ModFTP.FrontEnd.Src
 
             //BAJAR CIERRES
             //_ruta_UbicacionCierresFtp = "/entrada01/";
-            _ruta_UbicacionCierresFtp = "/" + Sistema._RutaUbicacionCierre + "/";
+            //_ruta_UbicacionCierresFtp = "/" + Sistema._RutaUbicacionCierre + "/";
+            _ruta_UbicacionCierresFtp = "/" + Sistema.CarpetaCierre_Negocio+ "/";
 
             //_ruta_ParaBajarCierre = @"\\192.168.0.185\share2\";
             _ruta_ParaBajarCierre = @"\\" + Sistema._ServidorHost + @"\share2\";
@@ -355,7 +356,10 @@ namespace ModFTP.FrontEnd.Src
                 {
                     MsgDebug("Archivo A Subir:" + file.Name);
                     var nombre1 = "/entrada01/" + file.Name;
-                    SubirArchivo(file.FullName, _ftpHost + "/entrada01/");
+
+                    //SubirArchivo(file.FullName, _ftpHost + "/entrada01/");
+                    var _localizacionCarpetaCierre = "/" + Sistema.CarpetaCierre_Negocio + "/";
+                    SubirArchivo(file.FullName, _ftpHost + _localizacionCarpetaCierre);
                     MsgDebug("Archivo Alojado En Hosting: " + nombre1);
 
                     MsgDebug("Archivo Movido A:" + _ruta_DataCierres + file.Name);
@@ -726,14 +730,29 @@ namespace ModFTP.FrontEnd.Src
                     Helpers.Msg.Error(r01.Mensaje);
                     return;
                 }
-                var r02 = _offLine.MonitorBoletin_Info();
+
+
+                var idNegocio = -1;
+                switch (Sistema.IdNegocio)
+                {
+                    case enumNegocio.Negocio.MayoristaValencia:
+                        idNegocio = 1;
+                        break;
+                    case enumNegocio.Negocio.PitaGuacara:
+                        idNegocio = 2;
+                        break;
+                    default:
+                        throw new Exception("DEBES IDENTIFICAR EL NEGOCIO A LA CUAL ESTAS SUSCRITO PARA BAJAR EL BOLETIN");
+                }
+                var r02 = _offLine.MonitorBoletin_Info(idNegocio);
                 if (r02.Result == DtoLib.Enumerados.EnumResult.isError) 
                 {
                     Helpers.Msg.Error(r02.Mensaje);
                     return;
                 }
 
-                _ruta_UbicacionBoletin = @"//entradaBol//";
+                //_ruta_UbicacionBoletin = @"//entradaBol//";
+                _ruta_UbicacionBoletin = @"//"+Sistema.CarpetaBoletin_Negocio+"//";
                 string contents = r02.Entidad;
                 if (contents!=null)
                 {
@@ -756,6 +775,7 @@ namespace ModFTP.FrontEnd.Src
             var result = false;
             var _tiempoEspera = 10000;
             var _rutaArchivoZip_Boletin = Sistema._RutaMaster_ParaAlojarBoletin;
+            var _idNegocio = Sistema._RutaMaster_ParaAlojarBoletin;
 
             _st.Clear();
             MsgDebug("INICIAR PROCESO: ENVIAR BOLETIN");
@@ -844,8 +864,20 @@ namespace ModFTP.FrontEnd.Src
                 }
                 var ubicacion = archivo.Substring(0, ind);
 
+                var idNegocio=-1;
+                switch (Sistema.IdNegocio)
+                {
+                    case enumNegocio.Negocio.MayoristaValencia:
+                        idNegocio=1;
+                        break;
+                    case enumNegocio.Negocio.PitaGuacara:
+                        idNegocio=2;
+                        break;
+                    default:
+                        throw new Exception("DEBES IDENTIFICAR EL NEGOCIO QUE ESTA SUBIENDO EL BOLETIN");
+                }
                 MsgDebug("ACTUALIZANDO MONITOR BOLETN DEL HOSTING");
-                var r01 = _offLine.MonitorBoletin_Actualizar(contenido);
+                var r01 = _offLine.MonitorBoletin_Actualizar(contenido, idNegocio);
                 if (r01.Result == DtoLib.Enumerados.EnumResult.isError)
                 {
                     MsgDebug("PROCESO FINALIZO CON ERROR");
@@ -853,8 +885,16 @@ namespace ModFTP.FrontEnd.Src
                     rt.Result = Enumerados.EnumResult.isError;
                     return rt;
                 }
+
+
+                if (Sistema.CarpetaBoletin_Negocio == "") 
+                {
+                    throw new Exception("DEBES IDENTIFICAR LA CARPETA DONDE SE ENVIARA EL BOLETIN");
+                }
                 MsgDebug("Subiendo Boletin: " + archivo);
-                SubirArchivo(archivo, _ftpHost + @"//entradaBol//");
+                //SubirArchivo(archivo, _ftpHost + @"//entradaBol//");
+                var _carpeta = @"//" + Sistema.CarpetaBoletin_Negocio + "//";
+                SubirArchivo(archivo, _ftpHost + _carpeta);
                 MsgDebug("PROCESO REALIZADO CON EXITO.......");
             }
             catch (Exception ex)

@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 
 namespace ModFTP.FrontEnd.Src
 {
-    
+
+    public class enumNegocio 
+    {
+        public enum Negocio { NoDefinido=-1, MayoristaValencia = 1, PitaGuacara = 2 };
+    }
     public class Sistema
     {
+
+        //IDENTIFICA EL NEGOCIO A CONTROLAR BOLETIN/CIERRE
+        public static enumNegocio.Negocio IdNegocio { get; set; }
+        public static string CarpetaBoletin_Negocio { get; set; }
+        public static string CarpetaCierre_Negocio { get; set; }
+
 
         public static bool _isMaster { get; set; }
 
@@ -39,7 +49,5 @@ namespace ModFTP.FrontEnd.Src
         public static DateTime _AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA { get; set; } // FORMATO AÑO,MES,DIA
 
         public static EnumeradoSist.TipoSistema TipoSistemaFact { get; set; }
-
     }
-
 }

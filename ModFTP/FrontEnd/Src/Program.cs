@@ -38,5 +38,4 @@ namespace ModFTP.FrontEnd.Src
             }
         }
     }
-
 }

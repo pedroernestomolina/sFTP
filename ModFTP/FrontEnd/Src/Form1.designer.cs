@@ -73,6 +73,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.TSM_SISTEMA_INSERTAR_BOLETIN_MANUAL = new System.Windows.Forms.ToolStripMenuItem();
             this.TDM_SISTEMA_DESCARGAR_ACTUALIZACIONES_BD = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -98,6 +102,8 @@
             this.panel16.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -143,6 +149,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel8.Controls.Add(this.panel11, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.panel18, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
@@ -271,6 +278,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.panel12, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(1);
@@ -628,6 +636,52 @@
             this.TDM_SISTEMA_DESCARGAR_ACTUALIZACIONES_BD.Text = "Descargar Actualizaciones Para  BD";
             this.TDM_SISTEMA_DESCARGAR_ACTUALIZACIONES_BD.Click += new System.EventHandler(this.TDM_SISTEMA_DESCARGAR_ACTUALIZACIONES_BD_Click);
             // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.GreenYellow;
+            this.panel14.Controls.Add(this.label2);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(1, 1);
+            this.panel14.Margin = new System.Windows.Forms.Padding(1);
+            this.panel14.Name = "panel14";
+            this.panel14.Padding = new System.Windows.Forms.Padding(2);
+            this.panel14.Size = new System.Drawing.Size(255, 40);
+            this.panel14.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(2, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(251, 36);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "GESTION MULTI EMPRESA ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.GreenYellow;
+            this.panel18.Controls.Add(this.label3);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(145, 1);
+            this.panel18.Margin = new System.Windows.Forms.Padding(1);
+            this.panel18.Name = "panel18";
+            this.panel18.Padding = new System.Windows.Forms.Padding(2);
+            this.panel18.Size = new System.Drawing.Size(335, 53);
+            this.panel18.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(2, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(331, 49);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "GESTION MULTI \r\nSUCURSAL";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +722,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -719,6 +775,10 @@
         private System.Windows.Forms.ToolStripMenuItem TSM_Sistema_SoloSubirBoletin;
         private System.Windows.Forms.ToolStripMenuItem TSM_Sistema_SoloBajarCierres;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Label label3;
     }
 }
 
