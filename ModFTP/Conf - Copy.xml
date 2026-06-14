@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuracion>
+  <Modo>MASTER</Modo>
+  <Master_Negocio_ID>2</Master_Negocio_ID> <!--1:MAYORISTA, 2:PITA GUACARA-->
+  <Master_Carpeta_Boletin>pitaBoletin</Master_Carpeta_Boletin> <!--CARPETA FTP DONDE SE ENVIAN LOS BOLETIN-->
+  <Master_Carpeta_Cierre>pitaCierre</Master_Carpeta_Cierre> <!--CARPETA FTP DONDE SE BUSCAN/COLOCAN LOS CIERRES-->
+
+  
+  <Servidor>
+    <Host>192.168.9.50</Host>
+    <BD>00000001</BD>
+    <user></user>
+  </Servidor>
+
+  <ServidorFtp>
+    <Host>ftp://pitabodegas.com</Host>
+    <Usuario>leonuxftp@pitabodegas.com</Usuario>
+    <Clave>71277128</Clave>
+  </ServidorFtp>
+
+  <Master>
+    <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
+    <EnviarBoletinA></EnviarBoletinA>
+  </Master>
+
+  <Sucursal>
+    <Id>02</Id>
+    <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
+    <RutaUbicacionBoletin></RutaUbicacionBoletin>
+    <RutaUbicacionCierre></RutaUbicacionCierre>
+    <Equipo>
+      <RutaParaCrearArchivoCierre>c:/leonux/bandeja</RutaParaCrearArchivoCierre>
+      <RutaParaAlojarCierre>c:/leonuxFtp/bandeja</RutaParaAlojarCierre>
+      <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
+      <RutaParaDescomprimirBoletin>c:/leonux/bandeja/temp</RutaParaDescomprimirBoletin>
+    </Equipo>
+    <ActualizarInventarioDeposito>SI</ActualizarInventarioDeposito> <!--PARA SISTEMA ON LINE VENTA MAYOR, ACTUALIZAR INVENTARIO -->
+    <AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL>SI</AL_BAJAR_BOLETN_DEJAR_SOLO_MOVIMIENTOS_KARDEX_DEPOSITO_PRINCIPAL> <!-- ELIMINA TODOS LOS MOVIMIENTOS KARDEX EXCLUYENDO DEPOSITO PRINCIPAL DE LA SUCURSAL INDICADA -->
+  </Sucursal>
+  
+</Configuracion>
