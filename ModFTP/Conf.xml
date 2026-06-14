@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuracion>
   <Modo>MASTER</Modo>
-  <Master_Negocio_ID>2</Master_Negocio_ID> <!--1:MAYORISTA, 2:PITA GUACARA-->
-  <Master_Carpeta_Boletin>pitaBoletin</Master_Carpeta_Boletin> <!--CARPETA FTP DONDE SE ENVIAN LOS BOLETIN-->
-  <Master_Carpeta_Cierre>pitaCierre</Master_Carpeta_Cierre> <!--CARPETA FTP DONDE SE BUSCAN/COLOCAN LOS CIERRES-->
+  <Master_Negocio_ID>1</Master_Negocio_ID> <!--1:MAYORISTA, 2:PITA GUACARA-->
+  <Master_Carpeta_Boletin>entradaBol</Master_Carpeta_Boletin> <!--CARPETA FTP DONDE SE ENVIAN LOS BOLETIN-->
+  <Master_Carpeta_Cierre>entrada01</Master_Carpeta_Cierre> <!--CARPETA FTP DONDE SE BUSCAN/COLOCAN LOS CIERRES-->
 
   
   <Servidor>
-    <Host>192.168.9.50</Host>
-    <BD>00000001</BD>
+    <Host>192.168.9.120</Host>
+    <BD>zufu26</BD>
     <user></user>
   </Servidor>
 
@@ -21,10 +21,11 @@
   <Master>
     <RutaParaAlojarBoletin>c:/leonuxFtp/bandeja</RutaParaAlojarBoletin>
     <EnviarBoletinA></EnviarBoletinA>
+    <AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA>2026-05-01</AL_SUBIR_BOLETN_ENVIAR_MOVIMIENTOS_INVENTARIO_DESDE_LA_FECHA><!-- FORMATO AÑO, MES, DIA, ENVIA MOVIMIENTOS DE INVENTARIO A PARTIR DE ESA FECHA PARA LAS SUCURSALES -->
   </Master>
 
   <Sucursal>
-    <Id>02</Id>
+    <Id>15</Id>
     <Tipo_Sistema>2</Tipo_Sistema> <!--1:POS OFFLINE, 2:POS ONLINE-->
     <RutaUbicacionBoletin></RutaUbicacionBoletin>
     <RutaUbicacionCierre></RutaUbicacionCierre>
